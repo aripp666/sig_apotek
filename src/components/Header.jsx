@@ -18,9 +18,6 @@ function Header() {
             <li>
               <Link to="/about" className="nav-item">About</Link> {/* Link ke halaman About */}
             </li>
-            <li>
-              <Link to="/contact" className="nav-item">Contact</Link> {/* Link ke halaman Contact */}
-            </li>
           </ul>
         </nav>
       </div>
