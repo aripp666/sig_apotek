@@ -3,7 +3,7 @@
     background-color: #f4f7f9; /* Soft background color for a clean look */
     padding: 80px 20px;
     text-align: center;
-    font-family: 'Roboto', sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .about-title {
@@ -63,6 +63,9 @@
     .about-description {
         font-size: 1.1rem;
         padding: 0 10px;
+    }
+    .about-img {
+        max-width: 100%;
     }
 
   
