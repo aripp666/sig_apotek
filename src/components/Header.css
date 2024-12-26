@@ -7,11 +7,11 @@
 
 /* Header Styles */
 .header {
-  background: linear-gradient(45deg, #00bcd4, #2196f3); /* Gradasi biru yang lebih halus */
-  padding: 25px 0; /* Padding sedikit lebih kecil agar tampak lebih ringan */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Bayangan lebih halus dan lebih besar */
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1); /* Menambah garis bawah untuk pemisah yang lebih bersih */
-  transition: background 0.3s ease; /* Efek transisi pada latar belakang */
+  background: linear-gradient(45deg, #00bcd4, #2196f3); 
+  padding: 55px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
 }
 
 /* Header Container */
@@ -32,18 +32,18 @@
 
 .logo {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 32px; /* Ukuran font logo lebih besar */
-  font-weight: 700; /* Font lebih tebal untuk kesan kuat */
+  font-size: 32px;
+  font-weight: 700;
   color: white;
-  letter-spacing: 3px; /* Menambah jarak antar huruf untuk kesan modern */
+  letter-spacing: 3px;
   text-transform: uppercase;
   margin: 0;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Menambahkan bayangan untuk logo agar lebih menonjol */
-  transition: color 0.3s ease; /* Efek transisi pada warna logo */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: color 0.3s ease;
 }
 
 .logo:hover {
-  color: #ffeb3b; /* Warna kuning cerah saat hover */
+  color: #ffeb3b;
 }
 
 /* Navigation Styles */
@@ -54,7 +54,7 @@
 
 .nav-list {
   display: flex;
-  gap: 40px; /* Jarak antar item lebih luas untuk kesan elegan */
+  gap: 40px;
 }
 
 .nav-item {
@@ -63,7 +63,7 @@
   font-weight: 500;
   text-decoration: none;
   position: relative;
-  padding-bottom: 6px; /* Memberi ruang untuk garis bawah */
+  padding-bottom: 6px;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -74,14 +74,14 @@
   height: 3px;
   bottom: 0;
   left: 0;
-  background-color: #ffeb3b; /* Garis bawah kuning */
+  background-color: #ffeb3b;
   transform: scaleX(0);
   transform-origin: bottom right;
   transition: transform 0.3s ease-in-out;
 }
 
 .nav-item:hover {
-  color: #ffeb3b; /* Warna kuning cerah saat hover */
+  color: #ffeb3b;
   transform: translateY(-3px);
 }
 
@@ -105,25 +105,25 @@
   }
 
   .logo {
-      font-size: 28px; /* Ukuran font logo lebih kecil pada mobile */
+      font-size: 28px; 
   }
 
   .nav-item {
-      font-size: 16px; /* Ukuran font link lebih kecil di mobile */
+      font-size: 18px; 
   }
 }
 
 /* Tweak untuk lebih meningkatkan tampilan saat scroll */
 @media (max-width: 480px) {
   .header {
-      padding: 15px 0; /* Padding header sedikit lebih kecil di mobile */
+      padding: 15px 0; 
   }
 
   .nav-item {
-      font-size: 14px; /* Ukuran font link lebih kecil pada perangkat lebih kecil */
+      font-size: 14px; 
   }
 
   .logo {
-      font-size: 24px; /* Ukuran logo lebih kecil pada perangkat lebih kecil */
+      font-size: 24px; 
   }
 }

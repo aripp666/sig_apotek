@@ -13,10 +13,10 @@ function Header() {
         <nav className="nav-links">
           <ul className="nav-list">
             <li>
-              <Link to="/" className="nav-item">Home</Link> {/* Link ke halaman utama */}
+              <Link to="/" className="nav-item">Home</Link>
             </li>
             <li>
-              <Link to="/about" className="nav-item">About</Link> {/* Link ke halaman About */}
+              <Link to="/about" className="nav-item">About</Link>
             </li>
           </ul>
         </nav>

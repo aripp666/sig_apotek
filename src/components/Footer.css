@@ -1,57 +1,93 @@
-/* General Footer Styles */
+/* Footer Styles */
 .footer {
-    background-color: #00bcd4;
-    color: white;
-    padding: 40px 20px;
-    text-align: center;
-    font-size: 16px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
+  background: #2196f3;
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer Container */
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Left Side Footer */
+.footer-left {
+  flex: 1;
+}
+
+.footer-left p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Right Side Footer */
+.footer-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.social-links {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.social-links li a {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-links li a:hover {
+  color: #ffeb3b;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
   .footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
-  
-  
-  .social-links a {
-    text-decoration: none;
-    color: white;
-    margin: 0 20px;
-    font-size: 30px;
-    transition: color 0.3s ease, transform 0.2s ease;
+
+  .footer-left {
+    margin-bottom: 15px;
   }
-  
-  .social-links a:hover {
-    color: #2196F3;
-    transform: translateY(-2px);
+
+  .footer-right {
+    justify-content: center;
   }
-  
-  /* Mobile Responsiveness */
-  @media (max-width: 768px) {
-    .footer-container {
-      padding: 0 10px;
-    }
-  
-    .social-links a {
-      font-size: 16px;
-      margin: 0 10px;
-    }
+
+  .social-links {
+    gap: 15px;
   }
-  
-  @media (max-width: 480px) {
-    .footer {
-      padding: 30px 15px;
-      font-size: 14px;
-    }
-  
-    .social-links a {
-      font-size: 14px;
-      margin: 0 8px;
-    }
+
+  .social-links li a {
+    font-size: 16px;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 15px 0;
+  }
+
+  .footer-left p {
+    font-size: 14px;
+  }
+
+  .social-links li a {
+    font-size: 14px;
+  }
+}

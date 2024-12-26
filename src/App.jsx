@@ -28,13 +28,13 @@ function App() {
   const [selectedKecamatan, setSelectedKecamatan] = useState("");
   const [vectorSource, setVectorSource] = useState(null);
   const [currentPage, setCurrentPage] = useState(1); // New state for the current page
-  const [itemsPerPage] = useState(5); // Define how many items per page
+  const [itemsPerPage] = useState(7); // Define how many items per page
 
   // Fetch data from API
   useEffect(() => {
     const fetchApoteks = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/apoteks");
+        const response = await axios.get("https://65b4-2001-448a-1090-82fb-9843-5645-929c-c64.ngrok-free.app/");
         setApoteks(response.data);
         setLoading(false);
       } catch (error) {
@@ -181,7 +181,7 @@ function App() {
           <div className="flex flex-col md:flex-row w-full p-5">
             {/* Sidebar */}
             <div className="sidebar w-full md:w-1/3 bg-white p-6 shadow-lg rounded-lg">
-              <h2 className="text-xl font-semibold mb-4 text-gray-700">Cari Apotek</h2>
+              <h2 className="text-4xl font-semibold mb-4 text-gray-700">Cari Apotek</h2>
               <input
                 type="text"
                 placeholder="Cari Apotek..."
