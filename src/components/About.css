@@ -1,0 +1,69 @@
+/* General Styles for About Page */
+.about-container {
+    background-color: #f4f7f9; /* Soft background color for a clean look */
+    padding: 80px 20px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.about-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    line-height: 1.2;
+}
+
+.about-description {
+    font-size: 1.3rem;
+    color: #7f8c8d;
+    line-height: 1.8;
+    margin-bottom: 50px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 15px;
+    text-align: justify;
+    font-style: bold; /* Adding a little style to the text */
+}
+
+.about-img-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-img {
+    max-width: 40%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s ease-in-out;
+    margin-bottom: 30px; /* Spacing between image and next content */
+}
+
+.about-img:hover {
+    transform: scale(1.1);
+}
+
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .about-container {
+        padding: 60px 15px;
+    }
+
+    .about-title {
+        font-size: 2.4rem;
+    }
+
+    .about-description {
+        font-size: 1.1rem;
+        padding: 0 10px;
+    }
+
+  
+}

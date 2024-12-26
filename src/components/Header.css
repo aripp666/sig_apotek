@@ -1,0 +1,129 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Header Styles */
+.header {
+  background: linear-gradient(45deg, #00bcd4, #2196f3); /* Gradasi biru yang lebih halus */
+  padding: 25px 0; /* Padding sedikit lebih kecil agar tampak lebih ringan */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Bayangan lebih halus dan lebih besar */
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1); /* Menambah garis bawah untuk pemisah yang lebih bersih */
+  transition: background 0.3s ease; /* Efek transisi pada latar belakang */
+}
+
+/* Header Container */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+/* Logo Styles */
+.logo-container {
+  flex-grow: 1;
+}
+
+.logo {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 32px; /* Ukuran font logo lebih besar */
+  font-weight: 700; /* Font lebih tebal untuk kesan kuat */
+  color: white;
+  letter-spacing: 3px; /* Menambah jarak antar huruf untuk kesan modern */
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Menambahkan bayangan untuk logo agar lebih menonjol */
+  transition: color 0.3s ease; /* Efek transisi pada warna logo */
+}
+
+.logo:hover {
+  color: #ffeb3b; /* Warna kuning cerah saat hover */
+}
+
+/* Navigation Styles */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  gap: 40px; /* Jarak antar item lebih luas untuk kesan elegan */
+}
+
+.nav-item {
+  color: white;
+  font-size: 26px;
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 6px; /* Memberi ruang untuk garis bawah */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-item:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: #ffeb3b; /* Garis bawah kuning */
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav-item:hover {
+  color: #ffeb3b; /* Warna kuning cerah saat hover */
+  transform: translateY(-3px);
+}
+
+.nav-item:hover:before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .header-container {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .nav-list {
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+      padding-left: 0;
+  }
+
+  .logo {
+      font-size: 28px; /* Ukuran font logo lebih kecil pada mobile */
+  }
+
+  .nav-item {
+      font-size: 16px; /* Ukuran font link lebih kecil di mobile */
+  }
+}
+
+/* Tweak untuk lebih meningkatkan tampilan saat scroll */
+@media (max-width: 480px) {
+  .header {
+      padding: 15px 0; /* Padding header sedikit lebih kecil di mobile */
+  }
+
+  .nav-item {
+      font-size: 14px; /* Ukuran font link lebih kecil pada perangkat lebih kecil */
+  }
+
+  .logo {
+      font-size: 24px; /* Ukuran logo lebih kecil pada perangkat lebih kecil */
+  }
+}
