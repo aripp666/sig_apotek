@@ -28,13 +28,13 @@ function App() {
   const [selectedKecamatan, setSelectedKecamatan] = useState("");
   const [vectorSource, setVectorSource] = useState(null);
   const [currentPage, setCurrentPage] = useState(1); // New state for the current page
-  const [itemsPerPage] = useState(7); // Define how many items per page
+  const [itemsPerPage] = useState(8); // Define how many items per page
 
   // Fetch data from API
   useEffect(() => {
     const fetchApoteks = async () => {
       try {
-        const response = await axios.get("https://65b4-2001-448a-1090-82fb-9843-5645-929c-c64.ngrok-free.app/");
+        const response = await axios.get("http://localhost:8000/api/apoteks");
         setApoteks(response.data);
         setLoading(false);
       } catch (error) {
@@ -162,7 +162,6 @@ function App() {
     }
   };
 
-  // Tombol untuk melihat detail apotek
   const handleViewDetails = (apotek) => {
     setSelectedApotek(apotek);
     const apotekCoords = [parseFloat(apotek.longitude), parseFloat(apotek.latitude)];
@@ -181,7 +180,7 @@ function App() {
           <div className="flex flex-col md:flex-row w-full p-5">
             {/* Sidebar */}
             <div className="sidebar w-full md:w-1/3 bg-white p-6 shadow-lg rounded-lg">
-              <h2 className="text-4xl font-semibold mb-4 text-gray-700">Cari Apotek</h2>
+              <h2 className="text-xl font-semibold mb-4 text-gray-700">Cari Apotek</h2>
               <input
                 type="text"
                 placeholder="Cari Apotek..."
@@ -207,7 +206,7 @@ function App() {
               </div>
 
               {/* Daftar Apotek yang Terfilter */}
-              <h3 className="text-lg font-semibold mt-6">Daftar Apotek</h3>
+              <h3 className="text-2xl font-bold mt-6">Daftar Apotek</h3>
               <ul className="list-none p-0">
                 {currentApoteks.map((apotek) => (
                   <li key={apotek.id} className="mb-2">

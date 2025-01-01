@@ -8,10 +8,11 @@
 /* Header Styles */
 .header {
   background: linear-gradient(45deg, #00bcd4, #2196f3); 
-  padding: 55px 0;
+  padding: 30px 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   transition: background 0.3s ease;
+  position: relative;
 }
 
 /* Header Container */
@@ -23,27 +24,42 @@
   margin: 0 auto;
   padding: 0 20px;
   position: relative;
+  z-index: 2;
 }
 
-/* Logo Styles */
+/* Logo Container */
 .logo-container {
-  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
 }
 
+/* Styling Logo Image */
 .logo {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 32px;
-  font-weight: 700;
-  color: white;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin: 0;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  transition: color 0.3s ease;
+  max-height: 100px; /* Sesuaikan ukuran logo */
+  width: auto;
+  margin-right: 15px; /* Menambahkan jarak antara logo dan teks */
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .logo:hover {
-  color: #ffeb3b;
+  transform: scale(1.1); /* Efek zoom saat logo di-hover */
+  filter: brightness(1.2); /* Efek brightness saat logo di-hover */
+}
+
+/* Logo Text Styles */
+.logo-text {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+  font-family: 'Arial', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  transition: color 0.3s ease;
+}
+
+.logo-text:hover {
+  color: #ffeb3b; /* Warna teks berubah saat di-hover */
 }
 
 /* Navigation Styles */
@@ -105,6 +121,10 @@
   }
 
   .logo {
+      max-height: 50px;
+  }
+
+  .logo-text {
       font-size: 28px; 
   }
 
@@ -124,6 +144,10 @@
   }
 
   .logo {
-      font-size: 24px; 
+      max-height: 40px; 
+  }
+
+  .logo-text {
+      font-size: 24px;
   }
 }
