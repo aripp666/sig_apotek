@@ -28,7 +28,7 @@ function App() {
   const [selectedKecamatan, setSelectedKecamatan] = useState("");
   const [vectorSource, setVectorSource] = useState(null);
   const [currentPage, setCurrentPage] = useState(1); // New state for the current page
-  const [itemsPerPage] = useState(8); // Define how many items per page
+  const [itemsPerPage] = useState(6); // Define how many items per page
 
   // Fetch data from API
   useEffect(() => {
@@ -259,14 +259,27 @@ function App() {
 
               {/* Sidebar Apotek Details */}
               {selectedApotek && (
-                <div className="apotek-details-container mt-6 p-4 bg-white rounded-lg shadow-md">
+              <div className="apotek-details-container mt-6 p-4 bg-white rounded-lg shadow-md">
+                <div className="apotek-text-container">
                   <h3 className="text-xl font-semibold text-gray-800">{selectedApotek.nama}</h3>
                   <p><strong>Alamat:</strong> {selectedApotek.alamat}</p>
                   <p><strong>Kecamatan:</strong> {selectedApotek.kecamatan}</p>
                   <p><strong>Waktu Operasional:</strong> {selectedApotek.waktu_operasional}</p>
                   <p><strong>Nomor Telephone:</strong> {selectedApotek.no_telp}</p>
                 </div>
-              )}
+
+                {/* Menambahkan gambar apotek */}
+                <div className="apotek-image-container">
+                  <img 
+                    src={selectedApotek.foto} 
+                    alt={`Gambar Apotek ${selectedApotek.nama}`} 
+                    className="rounded-lg shadow-lg"
+                  />
+                </div>
+              </div>
+            )}
+
+
             </div>
           </div>
         } />

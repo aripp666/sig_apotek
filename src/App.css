@@ -153,6 +153,9 @@ body {
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-wrap: wrap; /* Memastikan elemen tetap responsif */
+  justify-content: space-between;
   transition: transform 0.3s ease;
 }
 
@@ -160,6 +163,13 @@ body {
   transform: scale(1.02);
 }
 
+/* Menata teks informasi apotek */
+.apotek-text-container {
+  flex: 1;
+  padding-right: 20px; /* Memberi jarak antara teks dan gambar */
+}
+
+/* Teks informasi apotek */
 .apotek-details-container h3 {
   color: #00bcd4;
   font-size: 26px;
@@ -171,6 +181,21 @@ body {
   margin: 10px 0;
   font-size: 16px;
   line-height: 1.6;
+}
+
+/* Gambar apotek dengan ukuran lebih kecil dan berada di sebelah kanan */
+.apotek-image-container {
+  flex-shrink: 0;
+  max-width: 300px;  /* Maksimal lebar gambar */
+  width: 100%;
+  margin-top: 10px;
+}
+
+.apotek-image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Link Styles for Lihat Detail */
@@ -188,6 +213,7 @@ body {
   color: #008c9e;
   text-decoration: underline;
 }
+
 
 /* Daftar Apotek Styles */
 .sidebar ul {
