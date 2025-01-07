@@ -7,7 +7,7 @@
 
 /* Header Styles */
 .header {
-  background: linear-gradient(45deg, #00bcd4, #2196f3); 
+  background: linear-gradient(45deg, #8DA9E8, #5376C5); 
   padding: 30px 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
@@ -52,7 +52,7 @@
   font-size: 32px;
   font-weight: bold;
   color: white;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Cambria', 'Cochin', 'Georgia', 'Times', 'Times New Roman', serif;
   text-transform: uppercase;
   letter-spacing: 3px;
   transition: color 0.3s ease;

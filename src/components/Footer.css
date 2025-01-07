@@ -1,6 +1,6 @@
 /* Footer Styles */
 .footer {
-  background: #2196f3;
+  background: linear-gradient(45deg, #8DA9E8, #5376C5); 
   color: white;
   padding: 80px 0;
   text-align: center;

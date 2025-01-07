@@ -28,7 +28,7 @@ function App() {
   const [selectedKecamatan, setSelectedKecamatan] = useState("");
   const [vectorSource, setVectorSource] = useState(null);
   const [currentPage, setCurrentPage] = useState(1); // New state for the current page
-  const [itemsPerPage] = useState(6); // Define how many items per page
+  const [itemsPerPage] = useState(5); // Define how many items per page
 
   // Fetch data from API
   useEffect(() => {
@@ -162,6 +162,9 @@ function App() {
     }
   };
 
+  const [showModal, setShowModal] = useState(false);
+
+
   const handleViewDetails = (apotek) => {
     setSelectedApotek(apotek);
     const apotekCoords = [parseFloat(apotek.longitude), parseFloat(apotek.latitude)];
@@ -250,11 +253,11 @@ function App() {
 
             {/* Main Content */}
             <div className="content-container flex-1 ml-0 md:ml-6">
-              <h1 className="title text-3xl font-bold text-gray-800 mb-4">Persebaran Apotek di Kota Pekanbaru</h1>
-              <p className="description text-lg text-gray-600 mb-6">
+              <h1 className="title text-xl font-bold text-gray-800 mb-4">Persebaran Apotek di Kota Pekanbaru</h1>
+              {/* <p className="description text-lg text-gray-600 mb-6">
                 Peta ini menunjukkan lokasi-lokasi apotek di Kota Pekanbaru dan dapat digunakan untuk mencari dan mengetahui
                 informasi lebih lanjut tentang apotek yang ada di sekitar Anda.
-              </p>
+              </p> */}
               <div id="map" className="map-container w-full h-[500px] bg-gray-200 rounded-lg shadow-lg"></div>
 
               {/* Sidebar Apotek Details */}

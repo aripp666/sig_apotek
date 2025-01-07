@@ -45,9 +45,6 @@
     margin-bottom: 30px; /* Spacing between image and next content */
 }
 
-.about-img:hover {
-    transform: scale(1.1);
-}
 
 
 /* Responsive Design for Mobile */
