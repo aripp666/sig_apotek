@@ -29,12 +29,13 @@ function App() {
   const [vectorSource, setVectorSource] = useState(null);
   const [currentPage, setCurrentPage] = useState(1); // New state for the current page
   const [itemsPerPage] = useState(5); // Define how many items per page
+  const [isModalOpen, setIsModalOpen] = useState(false); // untuk kontrol apakah modal terbuka atau tidak
 
   // Fetch data from API
   useEffect(() => {
     const fetchApoteks = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/apoteks");
+        const response = await axios.get("http://localhost:8000/api/Apotek");
         setApoteks(response.data);
         setLoading(false);
       } catch (error) {
@@ -44,6 +45,34 @@ function App() {
     };
     fetchApoteks();
   }, []);
+
+  // Filtered apotek untuk ditampilkan di sidebar
+  const filteredApoteks = apoteks.filter((apotek) => {
+    const matchesSearch = apotek.nama.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesKecamatan = selectedKecamatan
+      ? apotek.kecamatan.toLowerCase() === selectedKecamatan.toLowerCase()
+      : true;
+    return matchesSearch && matchesKecamatan;
+  });
+
+    // Pagination Logic
+    const totalPages = Math.ceil(filteredApoteks.length / itemsPerPage);
+    const indexOfLastApotek = currentPage * itemsPerPage;
+    const indexOfFirstApotek = indexOfLastApotek - itemsPerPage;
+    const currentApoteks = filteredApoteks.slice(indexOfFirstApotek, indexOfLastApotek);
+  
+    // Pagination Controls
+    const nextPage = () => {
+      if (currentPage < totalPages) {
+        setCurrentPage(currentPage + 1);
+      }
+    };
+  
+    const prevPage = () => {
+      if (currentPage > 1) {
+        setCurrentPage(currentPage - 1);
+      }
+    };
 
   // Initialize Map
   useEffect(() => {
@@ -124,6 +153,7 @@ function App() {
         if (feature) {
           const apotek = feature.get("apotekData");
           setSelectedApotek(apotek);
+          setIsModalOpen(true);
           map.getView().animate({
             center: feature.getGeometry().getCoordinates(),
             zoom: 16,
@@ -134,47 +164,17 @@ function App() {
     }
   }, [map]);
 
-  // Filtered apotek untuk ditampilkan di sidebar
-  const filteredApoteks = apoteks.filter((apotek) => {
-    const matchesSearch = apotek.nama.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesKecamatan = selectedKecamatan
-      ? apotek.kecamatan.toLowerCase() === selectedKecamatan.toLowerCase()
-      : true;
-    return matchesSearch && matchesKecamatan;
-  });
+    const handleViewDetails = (apotek) => {
+      setSelectedApotek(apotek);
+      const apotekCoords = [parseFloat(apotek.longitude), parseFloat(apotek.latitude)];
+      map.getView().animate({
+        center: fromLonLat(apotekCoords),
+        zoom: 16,
+        duration: 1000,
+      });
+    };
 
-  // Pagination Logic
-  const totalPages = Math.ceil(filteredApoteks.length / itemsPerPage);
-  const indexOfLastApotek = currentPage * itemsPerPage;
-  const indexOfFirstApotek = indexOfLastApotek - itemsPerPage;
-  const currentApoteks = filteredApoteks.slice(indexOfFirstApotek, indexOfLastApotek);
-
-  // Pagination Controls
-  const nextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const [showModal, setShowModal] = useState(false);
-
-
-  const handleViewDetails = (apotek) => {
-    setSelectedApotek(apotek);
-    const apotekCoords = [parseFloat(apotek.longitude), parseFloat(apotek.latitude)];
-    map.getView().animate({
-      center: fromLonLat(apotekCoords),
-      zoom: 16,
-      duration: 1000,
-    });
-  };
-
+    
   return (
     <div className="app-container bg-gray-50 min-h-screen flex flex-col">
       <Header />
@@ -208,7 +208,6 @@ function App() {
                 </select>
               </div>
 
-              {/* Daftar Apotek yang Terfilter */}
               <h3 className="text-2xl font-bold mt-6">Daftar Apotek</h3>
               <ul className="list-none p-0">
                 {currentApoteks.map((apotek) => (
@@ -221,15 +220,13 @@ function App() {
                     </button>
                     <button
                       onClick={() => handleViewDetails(apotek)}
-                      className="w-full mt-2 p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                      className="w-full mt-2 p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-232"
                     >
                       Lihat Apotek
                     </button>
                   </li>
                 ))}
               </ul>
-
-              {/* Pagination Controls */}
               <div className="pagination mt-4 flex justify-between items-center">
                 <button
                   onClick={prevPage}
@@ -254,40 +251,37 @@ function App() {
             {/* Main Content */}
             <div className="content-container flex-1 ml-0 md:ml-6">
               <h1 className="title text-xl font-bold text-gray-800 mb-4">Persebaran Apotek di Kota Pekanbaru</h1>
-              {/* <p className="description text-lg text-gray-600 mb-6">
-                Peta ini menunjukkan lokasi-lokasi apotek di Kota Pekanbaru dan dapat digunakan untuk mencari dan mengetahui
-                informasi lebih lanjut tentang apotek yang ada di sekitar Anda.
-              </p> */}
               <div id="map" className="map-container w-full h-[500px] bg-gray-200 rounded-lg shadow-lg"></div>
-
-              {/* Sidebar Apotek Details */}
-              {selectedApotek && (
-              <div className="apotek-details-container mt-6 p-4 bg-white rounded-lg shadow-md">
-                <div className="apotek-text-container">
-                  <h3 className="text-xl font-semibold text-gray-800">{selectedApotek.nama}</h3>
-                  <p><strong>Alamat:</strong> {selectedApotek.alamat}</p>
-                  <p><strong>Kecamatan:</strong> {selectedApotek.kecamatan}</p>
-                  <p><strong>Waktu Operasional:</strong> {selectedApotek.waktu_operasional}</p>
-                  <p><strong>Nomor Telephone:</strong> {selectedApotek.no_telp}</p>
-                </div>
-
-                {/* Menambahkan gambar apotek */}
-                <div className="apotek-image-container">
-                  <img 
-                    src={selectedApotek.foto} 
-                    alt={`Gambar Apotek ${selectedApotek.nama}`} 
-                    className="rounded-lg shadow-lg"
-                  />
-                </div>
-              </div>
-            )}
-
-
             </div>
           </div>
         } />
         <Route path="/about" element={<About />} />
       </Routes>
+
+      {/* Modal Popup untuk Detail Apotek */}
+      {isModalOpen && selectedApotek && (
+        <div className="popup-overlay">
+          <div className="popup-container">
+            <h2 className="popup-title">{selectedApotek.nama}</h2>
+            <p><strong>Alamat:</strong> {selectedApotek.alamat}</p>
+            <p><strong>Kecamatan:</strong> {selectedApotek.kecamatan}</p>
+            <p><strong>Waktu Operasional:</strong> {selectedApotek.waktu_operasional}</p>
+            <p><strong>Nomor Telephone:</strong> {selectedApotek.no_telp}</p>
+            <img 
+              src={selectedApotek.foto} 
+              alt={`Gambar Apotek ${selectedApotek.nama}`} 
+              className="popup-image"
+            />
+            <button 
+              onClick={() => setIsModalOpen(false)} 
+              className="popup-close-btn"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       <Footer />
     </div>
   );

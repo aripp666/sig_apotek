@@ -171,7 +171,7 @@ body {
 
 /* Teks informasi apotek */
 .apotek-details-container h3 {
-  color: #00bcd4;
+  color: #5376C5;
   font-size: 26px;
   margin-bottom: 15px;
 }
@@ -186,21 +186,24 @@ body {
 /* Gambar apotek dengan ukuran lebih kecil dan berada di sebelah kanan */
 .apotek-image-container {
   flex-shrink: 0;
-  max-width: 300px;  /* Maksimal lebar gambar */
+  max-width: 200px;  /* Maksimal lebar gambar */
   width: 100%;
   margin-top: 10px;
+  overflow: hidden;  /* Agar gambar tidak meluap di luar kontainer */
 }
 
 .apotek-image-container img {
   width: 100%;
-  height: auto;
+  height: 100%;  /* Menyesuaikan gambar dengan tinggi kontainer */
+  object-fit: cover;  /* Gambar akan menutupi area kontainer tanpa distorsi */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+
 /* Link Styles for Lihat Detail */
 .apotek-details-container .lihat-detail {
-  color: #00bcd4;
+  color: #5376C5;
   font-size: 16px;
   text-decoration: none;
   font-weight: 600;
@@ -260,7 +263,7 @@ body {
 
 .sidebar ul li button + button {
   margin-top: 10px;
-  background-color: #00bcd4;
+  background-color: #8DA9E8 ;
   color: white;
   border: none;
   font-weight: 600;
@@ -269,7 +272,7 @@ body {
 }
 
 .sidebar ul li button + button:hover {
-  background-color: #008c9e;
+  background-color: #5376C5;
 }
 
 /* Pagination Styles */
@@ -285,9 +288,9 @@ body {
   padding: 10px 20px;
   margin: 0 5px;
   border-radius: 5px;
-  border: 2px solid #00bcd4;
+  border: 2px solid #8DA9E8;
   background-color: #ffffff;
-  color: #00bcd4;
+  color: #8DA9E8;
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;
@@ -297,12 +300,12 @@ body {
 
 .pagination a:hover,
 .pagination button:hover {
-  background-color: #00bcd4;
+  background-color: #8DA9E8;
   color: white;
 }
 
 .pagination .active {
-  background-color: #00bcd4;
+  background-color: #8DA9E8;
   color: white;
   border-color: #008c9e;
 }
@@ -322,6 +325,65 @@ body {
   color: #00bcd4;
   padding: 0 15px;
 }
+
+/* Styling untuk Overlay Popup */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Styling untuk Container Popup */
+.popup-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* Styling untuk Popup Title */
+.popup-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Styling untuk Popup Image */
+.popup-image {
+  max-width: 100%;
+  margin-top: 15px;
+  border-radius: 8px;
+}
+
+/* Styling untuk Tombol Close */
+.popup-close-btn {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.popup-close-btn:hover {
+  background-color: #d32f2f;
+}
+
+
 
 /* Mobile Adjustments */
 @media (max-width: 768px) {
@@ -377,6 +439,8 @@ body {
     font-size: 14px;
   }
 }
+
+
 
 @media (max-width: 480px) {
   .sidebar {
