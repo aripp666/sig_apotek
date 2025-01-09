@@ -1,7 +1,7 @@
 import React from "react";
 import './About.css';
-import sigImage from '../assets/images/sig.png'; // Gambar pertama
-import pekanbaruImage from '../assets/images/pekanbaru.png'; // Gambar kedua
+import sigImage from '../assets/images/sig.png'; 
+import pekanbaruImage from '../assets/images/pekanbaru.png'; 
 
 function About() {
   return (
@@ -11,10 +11,11 @@ function About() {
         Apotek Spotter adalah aplikasi berbasis peta yang dirancang untuk memudahkan masyarakat dalam mencari apotek terdekat di Provinsi Riau. Aplikasi ini memungkinkan pengguna untuk mencari dan menemukan apotek-apotek terdekat dengan menggunakan filter kecamatan, melihat informasi apotek lengkap seperti alamat, jam operasional, dan kontak yang dapat dihubungi. Kami bertujuan untuk memberikan kemudahan akses informasi apotek agar masyarakat dapat dengan mudah mendapatkan layanan kesehatan yang mereka butuhkan.
       </p>
       <div className="about-img-container">
-        <img src={sigImage} alt="SIG" className="about-img" />
+        <a href="/">
+          <img src={sigImage} alt="SIG" className="about-img" />
+        </a>
       </div>
 
-      {/* Menambahkan teks dan gambar tentang Kota Pekanbaru */}
       <h2 className="about-title">Kota Pekanbaru</h2>
       <p className="about-description">
         Kota Pekanbaru merupakan ibu kota Provinsi Riau yang mempunyai populasi yang banyak dan ekonomi yang berkembang secara signifikan. Dengan populasi yang banyak dan peningkatan jumlah populasi maka kebutuhan dalam layanan kesehatan termasuk akses ke apotek menjadi sangat penting. Apotek merupakan tempat penyedia obat-obatan dan layanan kesehatan yang mendukung kesejahteraan masyarakat.

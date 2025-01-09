@@ -1,11 +1,11 @@
-/* General Reset */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Header Styles */
+
 .header {
   background: linear-gradient(45deg, #8DA9E8, #5376C5); 
   padding: 30px 0;
@@ -15,7 +15,7 @@
   position: relative;
 }
 
-/* Header Container */
+
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -27,27 +27,27 @@
   z-index: 2;
 }
 
-/* Logo Container */
+
 .logo-container {
   display: flex;
   align-items: center;
   transition: transform 0.3s ease;
 }
 
-/* Styling Logo Image */
+
 .logo {
-  max-height: 100px; /* Sesuaikan ukuran logo */
+  max-height: 100px; 
   width: auto;
-  margin-right: 15px; /* Menambahkan jarak antara logo dan teks */
+  margin-right: 15px;
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .logo:hover {
-  transform: scale(1.1); /* Efek zoom saat logo di-hover */
-  filter: brightness(1.2); /* Efek brightness saat logo di-hover */
+  transform: scale(1.1); 
+  filter: brightness(1.2);
 }
 
-/* Logo Text Styles */
+
 .logo-text {
   font-size: 32px;
   font-weight: bold;
@@ -59,10 +59,10 @@
 }
 
 .logo-text:hover {
-  color: #ffeb3b; /* Warna teks berubah saat di-hover */
+  color: #ffeb3b; 
 }
 
-/* Navigation Styles */
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -106,7 +106,7 @@
   transform-origin: bottom left;
 }
 
-/* Mobile Responsiveness */
+
 @media (max-width: 768px) {
   .header-container {
       flex-direction: column;
@@ -133,7 +133,7 @@
   }
 }
 
-/* Tweak untuk lebih meningkatkan tampilan saat scroll */
+
 @media (max-width: 480px) {
   .header {
       padding: 15px 0; 

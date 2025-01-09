@@ -1,4 +1,4 @@
-/* Footer Styles */
+
 .footer {
   background: linear-gradient(45deg, #8DA9E8, #5376C5); 
   color: white;
@@ -7,7 +7,7 @@
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Footer Container */
+
 .footer-container {
   display: flex;
   justify-content: space-between;
@@ -17,7 +17,7 @@
   padding: 0 20px;
 }
 
-/* Left Side Footer */
+
 .footer-left {
   flex: 1;
 }
@@ -27,7 +27,7 @@
   margin: 0;
 }
 
-/* Right Side Footer */
+
 .footer-right {
   flex: 1;
   display: flex;
@@ -53,7 +53,6 @@
   color: #ffeb3b;
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;

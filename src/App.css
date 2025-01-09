@@ -1,4 +1,4 @@
-/* General Reset */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,14 +14,14 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* App Container */
+
 .app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-/* Sidebar Styles */
+
 .sidebar {
   width: 350px;
   padding: 20px;
@@ -35,6 +35,7 @@ body {
   z-index: 10;
   border-radius: 0 10px 10px 0;
   transition: transform 0.3s ease-in-out;
+  
 }
 
 .sidebar:hover {
@@ -61,7 +62,7 @@ body {
   }
 }
 
-/* Input and Select Styles */
+
 .input, .select {
   padding: 12px 15px;
   font-size: 16px;
@@ -81,7 +82,7 @@ body {
   background-color: #fafafa;
 }
 
-/* Button Styles */
+
 .button {
   background-color: #00bcd4;
   color: white;
@@ -100,7 +101,7 @@ body {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Map Container */
+
 .map-container {
   width: 100%;
   height: 70vh;
@@ -114,7 +115,11 @@ body {
   transform: scale(1.02);
 }
 
-/* Content Section */
+.white-text {
+  color: #ffffff;
+}
+
+
 .content-container {
   margin-left: 380px;
   padding: 40px;
@@ -125,7 +130,7 @@ body {
   border-radius: 10px;
 }
 
-/* Title Styles */
+
 .title {
   color: #8DA9E8;
   text-align: center;
@@ -136,7 +141,7 @@ body {
   line-height: 1.2;
 }
 
-/* Description Styles */
+
 .description {
   color: #555555;
   text-align: center;
@@ -146,7 +151,6 @@ body {
   font-weight: 300;
 }
 
-/* Apotek Details Container */
 .apotek-details-container {
   margin-top: 40px;
   padding: 25px;
@@ -154,7 +158,7 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-wrap: wrap; /* Memastikan elemen tetap responsif */
+  flex-wrap: wrap; 
   justify-content: space-between;
   transition: transform 0.3s ease;
 }
@@ -163,13 +167,11 @@ body {
   transform: scale(1.02);
 }
 
-/* Menata teks informasi apotek */
 .apotek-text-container {
   flex: 1;
-  padding-right: 20px; /* Memberi jarak antara teks dan gambar */
+  padding-right: 20px; 
 }
 
-/* Teks informasi apotek */
 .apotek-details-container h3 {
   color: #5376C5;
   font-size: 26px;
@@ -183,25 +185,25 @@ body {
   line-height: 1.6;
 }
 
-/* Gambar apotek dengan ukuran lebih kecil dan berada di sebelah kanan */
+
 .apotek-image-container {
   flex-shrink: 0;
-  max-width: 200px;  /* Maksimal lebar gambar */
+  max-width: 200px;  
   width: 100%;
   margin-top: 10px;
-  overflow: hidden;  /* Agar gambar tidak meluap di luar kontainer */
+  overflow: hidden;  
 }
 
 .apotek-image-container img {
   width: 100%;
-  height: 100%;  /* Menyesuaikan gambar dengan tinggi kontainer */
-  object-fit: cover;  /* Gambar akan menutupi area kontainer tanpa distorsi */
+  height: 100%;  
+  object-fit: cover;  
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 
-/* Link Styles for Lihat Detail */
+
 .apotek-details-container .lihat-detail {
   color: #5376C5;
   font-size: 16px;
@@ -218,7 +220,6 @@ body {
 }
 
 
-/* Daftar Apotek Styles */
 .sidebar ul {
   padding: 0;
   margin-top: 20px;
@@ -275,7 +276,7 @@ body {
   background-color: #5376C5;
 }
 
-/* Pagination Styles */
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -300,7 +301,7 @@ body {
 
 .pagination a:hover,
 .pagination button:hover {
-  background-color: #8DA9E8;
+  background-color: #5376C5;
   color: white;
 }
 
@@ -326,7 +327,7 @@ body {
   padding: 0 15px;
 }
 
-/* Styling untuk Overlay Popup */
+
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -340,33 +341,37 @@ body {
   z-index: 1000;
 }
 
-/* Styling untuk Container Popup */
+
 .popup-container {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   max-width: 500px;
+  font-size: large;
   width: 100%;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
-/* Styling untuk Popup Title */
+
 .popup-title {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 10px;
   color: #333;
 }
 
-/* Styling untuk Popup Image */
+
 .popup-image {
-  max-width: 100%;
+  width: 100%; 
+  height: 400px; 
+  object-fit: cover; 
   margin-top: 15px;
   border-radius: 8px;
 }
 
-/* Styling untuk Tombol Close */
+
+
 .popup-close-btn {
   background-color: #f44336;
   color: white;
@@ -385,7 +390,7 @@ body {
 
 
 
-/* Mobile Adjustments */
+
 @media (max-width: 768px) {
   .app-container {
     flex-direction: column;

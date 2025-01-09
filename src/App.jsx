@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "ol/ol.css"; // Import CSS untuk OpenLayers
+import "ol/ol.css"; 
 import Map from "ol/Map";
 import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
@@ -13,10 +13,11 @@ import Point from "ol/geom/Point";
 import { Style, Icon } from "ol/style";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import About from "./components/About"; // Import About component
-import { Route, Routes } from "react-router-dom"; // Import Route dan Routes untuk routing
+import About from "./components/About"; 
+import { Route, Routes } from "react-router-dom"; 
 import apotekIcon from "./assets/icons/apotek.png";
 import './App.css';
+import Admin from "./components/Admin";
 
 function App() {
   const [apoteks, setApoteks] = useState([]);
@@ -27,15 +28,15 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedKecamatan, setSelectedKecamatan] = useState("");
   const [vectorSource, setVectorSource] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1); // New state for the current page
-  const [itemsPerPage] = useState(5); // Define how many items per page
-  const [isModalOpen, setIsModalOpen] = useState(false); // untuk kontrol apakah modal terbuka atau tidak
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5); 
+  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [selectedWaktuOperasional, setSelectedWaktuOperasional] = useState("");
 
-  // Fetch data from API
   useEffect(() => {
     const fetchApoteks = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/Apotek");
+        const response = await axios.get("http://localhost:8000/api/apoteks");
         setApoteks(response.data);
         setLoading(false);
       } catch (error) {
@@ -46,22 +47,26 @@ function App() {
     fetchApoteks();
   }, []);
 
-  // Filtered apotek untuk ditampilkan di sidebar
   const filteredApoteks = apoteks.filter((apotek) => {
     const matchesSearch = apotek.nama.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesKecamatan = selectedKecamatan
       ? apotek.kecamatan.toLowerCase() === selectedKecamatan.toLowerCase()
       : true;
-    return matchesSearch && matchesKecamatan;
+    const matchesWaktuOperasional = selectedWaktuOperasional
+      ? apotek.waktu_operasional === "24 Hours"
+      : true; 
+  
+    return matchesSearch && matchesKecamatan && matchesWaktuOperasional;
   });
+  
 
-    // Pagination Logic
+
     const totalPages = Math.ceil(filteredApoteks.length / itemsPerPage);
     const indexOfLastApotek = currentPage * itemsPerPage;
     const indexOfFirstApotek = indexOfLastApotek - itemsPerPage;
     const currentApoteks = filteredApoteks.slice(indexOfFirstApotek, indexOfLastApotek);
   
-    // Pagination Controls
+
     const nextPage = () => {
       if (currentPage < totalPages) {
         setCurrentPage(currentPage + 1);
@@ -78,14 +83,14 @@ function App() {
   useEffect(() => {
     if (apoteks.length > 0 && !map) {
       const initialMap = new Map({
-        target: "map", // Target elemen dengan ID "map"
+        target: "map", 
         layers: [
           new TileLayer({
             source: new OSM(),
           }),
         ],
         view: new View({
-          center: fromLonLat([101.4475, 0.5333]), // Koordinat Provinsi Riau
+          center: fromLonLat([101.4475, 0.5333]), 
           zoom: 12,
         }),
       });
@@ -102,7 +107,7 @@ function App() {
     }
   }, [apoteks, map]);
 
-  // Filter apoteks berdasarkan query pencarian dan kecamatan yang dipilih
+
   useEffect(() => {
     if (vectorSource) {
       vectorSource.clear();
@@ -133,7 +138,7 @@ function App() {
         vectorSource.addFeature(feature);
       });
 
-      // Zoom ke apotek pertama yang terfilter jika ada
+
       if (filteredApoteks.length > 0) {
         const firstApotekCoords = [parseFloat(filteredApoteks[0].longitude), parseFloat(filteredApoteks[0].latitude)];
         map.getView().animate({
@@ -145,7 +150,7 @@ function App() {
     }
   }, [searchQuery, selectedKecamatan, apoteks, vectorSource, map]);
 
-  // Handle Klik pada Peta untuk menampilkan detail
+
   useEffect(() => {
     if (map) {
       map.on("click", (event) => {
@@ -181,9 +186,8 @@ function App() {
       <Routes>
         <Route path="/" element={
           <div className="flex flex-col md:flex-row w-full p-5">
-            {/* Sidebar */}
             <div className="sidebar w-full md:w-1/3 bg-white p-6 shadow-lg rounded-lg">
-              <h2 className="text-xl font-semibold mb-4 text-gray-700">Cari Apotek</h2>
+              <h2 className="text-xl font-semibold mb-4 white-text">Cari Apotek</h2>
               <input
                 type="text"
                 placeholder="Cari Apotek..."
@@ -192,7 +196,7 @@ function App() {
                 className="input w-full p-2 border rounded-lg mb-4"
               />
               <div>
-                <label htmlFor="kecamatan" className="label text-sm font-medium text-gray-600 mb-2">Filter Kecamatan:</label>
+                <label htmlFor="kecamatan" className="label text-xl font-medium white-text mb-2">Filter Kecamatan:</label>
                 <select
                   id="kecamatan"
                   value={selectedKecamatan}
@@ -207,8 +211,20 @@ function App() {
                   ))}
                 </select>
               </div>
+              <div>
+              <label htmlFor="waktuOperasional" className="label text-xl font-medium white-text mb-2">Filter Waktu Operasional:</label>
+              <select
+                id="waktuOperasional"
+                value={selectedWaktuOperasional}
+                onChange={(e) => setSelectedWaktuOperasional(e.target.value)}
+                className="select w-full p-2 border rounded-lg"
+              >
+                <option value="">Semua Waktu Operasional</option>
+                <option value="24 Hours">24 Hours</option>
+              </select>
+            </div>
 
-              <h3 className="text-2xl font-bold mt-6">Daftar Apotek</h3>
+              <h3 className="text-2xl font-bold white-text mt-6">Daftar Apotek</h3>
               <ul className="list-none p-0">
                 {currentApoteks.map((apotek) => (
                   <li key={apotek.id} className="mb-2">
@@ -235,7 +251,7 @@ function App() {
                 >
                   Prev
                 </button>
-                <span className="text-gray-700">
+                <span className="white-text">
                   Bagian {currentPage} dari {totalPages}
                 </span>
                 <button
@@ -248,38 +264,37 @@ function App() {
               </div>
             </div>
 
-            {/* Main Content */}
             <div className="content-container flex-1 ml-0 md:ml-6">
               <h1 className="title text-xl font-bold text-gray-800 mb-4">Persebaran Apotek di Kota Pekanbaru</h1>
               <div id="map" className="map-container w-full h-[500px] bg-gray-200 rounded-lg shadow-lg"></div>
             </div>
           </div>
         } />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/about" element={<About />} />
       </Routes>
 
-      {/* Modal Popup untuk Detail Apotek */}
       {isModalOpen && selectedApotek && (
-        <div className="popup-overlay">
-          <div className="popup-container">
-            <h2 className="popup-title">{selectedApotek.nama}</h2>
-            <p><strong>Alamat:</strong> {selectedApotek.alamat}</p>
-            <p><strong>Kecamatan:</strong> {selectedApotek.kecamatan}</p>
-            <p><strong>Waktu Operasional:</strong> {selectedApotek.waktu_operasional}</p>
-            <p><strong>Nomor Telephone:</strong> {selectedApotek.no_telp}</p>
-            <img 
-              src={selectedApotek.foto} 
-              alt={`Gambar Apotek ${selectedApotek.nama}`} 
-              className="popup-image"
-            />
-            <button 
-              onClick={() => setIsModalOpen(false)} 
-              className="popup-close-btn"
-            >
-              Close
-            </button>
+          <div className="popup-overlay">
+            <div className="popup-container">
+              <h2 className="popup-title">{selectedApotek.nama}</h2>
+              <p><strong>Alamat:</strong> {selectedApotek.alamat}</p>
+              <p><strong>Kecamatan:</strong> {selectedApotek.kecamatan}</p>
+              <p><strong>Waktu Operasional:</strong> {selectedApotek.waktu_operasional}</p>
+              <p><strong>Nomor Telephone: +62</strong> {selectedApotek.no_telp}</p>
+              <img 
+                src={selectedApotek.foto} 
+                alt={`Gambar Apotek ${selectedApotek.nama}`} 
+                className="popup-image"
+              />
+              <button 
+                onClick={() => setIsModalOpen(false)} 
+                className="popup-close-btn"
+              >
+                Close
+              </button>
+            </div>
           </div>
-        </div>
       )}
 
       <Footer />
